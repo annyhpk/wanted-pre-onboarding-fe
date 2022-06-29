@@ -6,6 +6,13 @@ export const Input = styled.input`
   &:focus {
     border: #3dbd3e solid 2px;
   }
+  &.fail {
+    border: orangered solid 2px;
+  }
+  & + p {
+    color: orangered;
+    font-size: 12px;
+  }
 `;
 
 export const Form = styled.form`
@@ -21,11 +28,18 @@ export const Form = styled.form`
 
   button {
     border-radius: 5px;
-    width: 11em;
+    width: 10rem;
+    height: 1.5rem;
     font-weight: bold;
     margin: 0 auto;
   }
-  p {
+
+  button.active {
+    color: white;
+    background: dodgerblue;
+  }
+
+  & + p {
     font-weight: bold;
     font-size: 24px;
   }
