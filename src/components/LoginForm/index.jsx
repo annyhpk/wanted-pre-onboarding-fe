@@ -1,12 +1,20 @@
-import React, { useRef, useCallback, useState } from 'react';
+import React, {
+  useRef,
+  useCallback,
+  useState,
+  useContext,
+  memo,
+  useEffect,
+} from 'react';
 import { useNavigate } from 'react-router';
-import isLogin from '../../util/isLogin';
+import { LoginContext } from '../../context/LoginContext';
 
 // style
 import { Input, Form } from './style';
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const { setData } = useContext(LoginContext);
   const loginFormRef = useRef(null);
   const [emailCheck, setEmailCheck] = useState(false);
   const [passwordCheck, setPasswordCheck] = useState(false);
@@ -15,15 +23,12 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const userId = e.target.children.email.value;
-      const loginData = JSON.stringify({
+      const loginData = {
         id: userId,
         success: true,
-      });
-      localStorage.setItem('loginData', loginData);
-
-      if (isLogin()) {
-        navigate('/');
-      }
+      };
+      setData(loginData);
+      navigate('/');
     } catch (err) {
       console.log(err);
       alert('죄송합니다. 에러가 발생하였습니다.');
@@ -31,8 +36,10 @@ const LoginForm = () => {
   }, []);
 
   const onChangeEmailValidation = useCallback((e) => {
-    const pattern = e.currentTarget.pattern;
-    if (e.currentTarget.value.match(pattern)) {
+    const reg = new RegExp(
+      '^[da-zA-Z]([-_.]?[da-zA-Z])*@[da-zA-Z]([-_.]?[da-zA-Z])*.[a-zA-Z]{2,3}$'
+    );
+    if (e.currentTarget.value.match(reg)) {
       e.currentTarget.classList.remove('fail');
       setEmailCheck(true);
     } else {
@@ -42,8 +49,10 @@ const LoginForm = () => {
   }, []);
 
   const onChangePasswordValidation = useCallback((e) => {
-    const pattern = e.currentTarget.pattern;
-    if (e.currentTarget.value.match(pattern)) {
+    const reg = new RegExp(
+      '^(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*#?&])[A-Za-z0-9$@$!%*#?&]{8,}$'
+    );
+    if (e.currentTarget.value.match(reg)) {
       e.currentTarget.classList.remove('fail');
       setPasswordCheck(true);
     } else {
@@ -51,6 +60,10 @@ const LoginForm = () => {
       setPasswordCheck(false);
     }
   }, []);
+
+  // useEffect(() => {
+  //   if (loginData?.success === true) navigate('/');
+  // }, []);
 
   return (
     <>
@@ -63,8 +76,6 @@ const LoginForm = () => {
           placeholder="아이디(email)"
           autoFocus={true}
           onChange={onChangeEmailValidation}
-          pattern="^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
-          size="30"
           alt="이메일"
           required
         />
@@ -77,7 +88,6 @@ const LoginForm = () => {
           name="password"
           placeholder="비밀번호"
           onChange={onChangePasswordValidation}
-          pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
           alt="비밀번호"
           required
         />
@@ -98,4 +108,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default memo(LoginForm);
