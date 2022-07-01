@@ -61,10 +61,6 @@ const LoginForm = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (loginData?.success === true) navigate('/');
-  // }, []);
-
   return (
     <>
       <Form ref={loginFormRef} id="loginForm" onSubmit={onSubmitLoginForm}>

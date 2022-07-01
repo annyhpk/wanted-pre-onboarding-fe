@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useEffect, useReducer } from 'react';
 
 const defaultValue = {};
 
@@ -24,6 +24,10 @@ const LoginProvider = ({ children }) => {
   const setData = (loginData) => {
     dispatch({ type: 'SET_DATA', loginData });
   };
+
+  useEffect(() => {
+    localStorage.setItem('loginData', JSON.stringify(state));
+  }, [state]);
 
   return (
     <LoginContext.Provider
