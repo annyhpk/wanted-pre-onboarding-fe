@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom';
 export const GlobalNavigationBar = styled.div`
   display: flex;
   justify-content: space-around;
-  position: sticky;
-  width: 100vw;
+  width: 100%;
   height: 5vh;
   background: #50bcdf;
-  opacity: 0.8;
+  position: fixed;
 
   p {
     margin: auto 0;
