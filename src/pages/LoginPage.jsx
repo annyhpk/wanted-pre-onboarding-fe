@@ -12,11 +12,7 @@ const LoginPage = () => {
     if (loginData?.success) navigate('/');
   }, [loginData]);
 
-  return (
-    <div>
-      <LoginForm />
-    </div>
-  );
+  return <LoginForm />;
 };
 
 export default LoginPage;
