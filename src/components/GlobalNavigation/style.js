@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const GlobalNavigationBar = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   position: sticky;
   width: 100vw;
   height: 5vh;
@@ -28,6 +28,10 @@ export const SearchInput = styled.input`
   height: 2rem;
   border-radius: 5px;
   border: gray solid 2px;
+
+  @media (max-width: 640px) {
+    visibility: hidden;
+  }
 `;
 
 export const SearchButton = styled.button`
