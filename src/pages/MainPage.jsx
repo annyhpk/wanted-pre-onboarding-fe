@@ -1,19 +1,38 @@
-import React, { useContext, useEffect } from 'react';
+import React, { lazy, useContext, useEffect, useState } from 'react';
 import { LoginContext } from '../context/LoginContext';
 import { useNavigate } from 'react-router';
+import { FeedsWrapper } from '../components/Feed/style';
+
+const Feed = lazy(() => import('../components/Feed'));
 
 const MainPage = () => {
-  const { loginData } = useContext(LoginContext);
   const navigate = useNavigate();
+  const { loginData } = useContext(LoginContext);
+  const [feedData, setFeedData] = useState([]);
 
   useEffect(() => {
     if (!loginData?.success) navigate('/login');
   }, [loginData]);
 
+  useEffect(() => {
+    fetch('./data/feedData.json')
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setFeedData(data?.feeds);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
-    <div>
-      <h1>hi, Welcome</h1>
-    </div>
+    <FeedsWrapper>
+      {feedData?.map((feed) => (
+        <Feed key={feed?.id} feedData={{ ...feed }} />
+      ))}
+    </FeedsWrapper>
   );
 };
 
