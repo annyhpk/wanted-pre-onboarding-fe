@@ -1,0 +1,118 @@
+{
+  "feeds": [
+    {
+      "id": 0,
+      "publisher": "user1",
+      "article": "이쁜 사진입니다.여러분의 생각은 어떤가요? 여러분의 생각을 댓글창에 적어주세요. 여러분의 의견을 듣고싶습니다.",
+      "likes": ["user3", "user4", "user5"],
+      "image": "https://cdn.pixabay.com/photo/2022/01/02/19/43/train-6910973_960_720.jpg",
+      "comments": [
+        {
+          "user": "user2",
+          "comment": "멋있어요!!"
+        },
+        {
+          "user": "user2",
+          "comment": "멋있어요!!"
+        }
+      ],
+      "createdAt": "2022-06-30",
+      "updatedAt": ""
+    },
+    {
+      "id": 1,
+      "publisher": "user2",
+      "article": "이쁜 사진입니다.여러분의 생각은 어떤가요? 여러분의 생각을 댓글창에 적어주세요. 여러분의 의견을 듣고싶습니다.",
+      "likes": ["user3", "user4", "user5"],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/%22%D0%92%D0%BE%D0%B4%D0%BE%D0%BF%D0%B0%D0%B4_%D0%A7%D0%B5%D1%80%D0%B5%D0%BF._%D0%9E%D0%B1%D1%89%D0%B8%D0%B9_%D0%B2%D0%B8%D0%B4._jpg%22.jpg/1280px-%22%D0%92%D0%BE%D0%B4%D0%BE%D0%BF%D0%B0%D0%B4_%D0%A7%D0%B5%D1%80%D0%B5%D0%BF._%D0%9E%D0%B1%D1%89%D0%B8%D0%B9_%D0%B2%D0%B8%D0%B4._jpg%22.jpg",
+      "comments": [
+        {
+          "user": "user1",
+          "comment": "멋있어요!!"
+        },
+        {
+          "user": "user2",
+          "comment": "멋있어요!!"
+        }
+      ],
+      "createdAt": "2022-06-30",
+      "updatedAt": ""
+    },
+    {
+      "id": 2,
+      "publisher": "user3",
+      "article": "이쁜 사진입니다.여러분의 생각은 어떤가요? 여러분의 생각을 댓글창에 적어주세요. 여러분의 의견을 듣고싶습니다.",
+      "likes": ["user3", "user4", "user5"],
+      "image": "https://cdn.pixabay.com/photo/2020/11/22/19/19/louvre-5767708_960_720.jpg",
+      "comments": [
+        {
+          "user": "user2",
+          "comment": "멋있어요!!"
+        },
+        {
+          "user": "user2",
+          "comment": "멋있어요!!"
+        }
+      ],
+      "createdAt": "2022-06-30",
+      "updatedAt": ""
+    },
+    {
+      "id": 3,
+      "publisher": "user3",
+      "article": "이쁜 사진입니다.여러분의 생각은 어떤가요? 여러분의 생각을 댓글창에 적어주세요. 여러분의 의견을 듣고싶습니다.",
+      "likes": ["user3", "user4", "user5"],
+      "image": "https://cdn.pixabay.com/photo/2020/11/22/19/19/louvre-5767708_960_720.jpg",
+      "comments": [
+        {
+          "user": "user2",
+          "comment": "멋있어요!!"
+        },
+        {
+          "user": "user2",
+          "comment": "멋있어요!!"
+        }
+      ],
+      "createdAt": "2022-06-30",
+      "updatedAt": ""
+    },
+    {
+      "id": 4,
+      "publisher": "user3",
+      "article": "이쁜 사진입니다.여러분의 생각은 어떤가요? 여러분의 생각을 댓글창에 적어주세요. 여러분의 의견을 듣고싶습니다.",
+      "likes": ["user3", "user4", "user5"],
+      "image": "https://cdn.pixabay.com/photo/2020/11/22/19/19/louvre-5767708_960_720.jpg",
+      "comments": [
+        {
+          "user": "user2",
+          "comment": "멋있어요!!"
+        },
+        {
+          "user": "user2",
+          "comment": "멋있어요!!"
+        }
+      ],
+      "createdAt": "2022-06-30",
+      "updatedAt": ""
+    },
+    {
+      "id": 5,
+      "publisher": "user3",
+      "article": "이쁜 사진입니다.여러분의 생각은 어떤가요? 여러분의 생각을 댓글창에 적어주세요. 여러분의 의견을 듣고싶습니다.",
+      "likes": ["user3", "user4", "user5"],
+      "image": "https://cdn.pixabay.com/photo/2020/11/22/19/19/louvre-5767708_960_720.jpg",
+      "comments": [
+        {
+          "user": "user2",
+          "comment": "멋있어요!!"
+        },
+        {
+          "user": "user2",
+          "comment": "멋있어요!!"
+        }
+      ],
+      "createdAt": "2022-06-30",
+      "updatedAt": ""
+    }
+  ]
+}
