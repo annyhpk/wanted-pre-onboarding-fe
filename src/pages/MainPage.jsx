@@ -1,5 +1,5 @@
-import React, { lazy, useContext, useEffect, useState } from 'react';
-import { LoginContext } from '../context/LoginContext';
+import React, { lazy, useEffect, useState } from 'react';
+import { useLoginValue } from '../context/LoginContext';
 import { useNavigate } from 'react-router';
 import { FeedsWrapper } from '../components/Feed/style';
 
@@ -7,7 +7,7 @@ const Feed = lazy(() => import('../components/Feed'));
 
 const MainPage = () => {
   const navigate = useNavigate();
-  const { loginData } = useContext(LoginContext);
+  const loginData = useLoginValue();
   const [feedData, setFeedData] = useState([]);
 
   useEffect(() => {

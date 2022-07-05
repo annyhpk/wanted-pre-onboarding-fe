@@ -1,44 +1,68 @@
-import React, { createContext, useEffect, useReducer } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
-const defaultValue = {};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'SET_DATA':
-      return { ...state, ...action.loginData };
-    default:
-      throw new Error();
-  }
+const defaultValue = {
+  id: undefined,
+  success: false,
 };
 
-export const LoginContext = createContext();
+const LoginValueContext = createContext();
+const LoginActionsContext = createContext();
 
 const initializer = () => {
   const localData = localStorage.getItem('loginData');
-  return localData ? JSON.parse(localData) : { id: undefined, success: false };
+  return localData ? JSON.parse(localData) : defaultValue;
 };
 
 const LoginProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, defaultValue, initializer);
+  const [loginData, setLoginData] = useState(initializer());
 
-  const setData = (loginData) => {
-    dispatch({ type: 'SET_DATA', loginData });
-  };
+  const actions = useMemo(
+    () => ({
+      setData(newLoginData) {
+        setLoginData((prev) => {
+          return {
+            ...prev,
+            ...newLoginData,
+          };
+        });
+      },
+    }),
+    []
+  );
 
   useEffect(() => {
-    localStorage.setItem('loginData', JSON.stringify(state));
-  }, [state]);
+    localStorage.setItem('loginData', JSON.stringify(loginData));
+  }, [loginData]);
 
   return (
-    <LoginContext.Provider
-      value={{
-        loginData: state,
-        setData,
-      }}
-    >
-      {children}
-    </LoginContext.Provider>
+    <LoginActionsContext.Provider value={actions}>
+      <LoginValueContext.Provider value={loginData}>
+        {children}
+      </LoginValueContext.Provider>
+    </LoginActionsContext.Provider>
   );
 };
+
+export function useLoginValue() {
+  const value = useContext(LoginValueContext);
+  if (value === undefined) {
+    throw new Error('useLoginValue should be used within LoginProvider');
+  }
+  return value;
+}
+
+export function useLoginActions() {
+  const value = useContext(LoginActionsContext);
+  if (value === undefined) {
+    throw new Error('useLoginActions should be used within LoginProvider');
+  }
+  return value;
+}
 
 export default LoginProvider;

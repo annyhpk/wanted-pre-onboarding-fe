@@ -1,20 +1,13 @@
-import React, {
-  useRef,
-  useCallback,
-  useState,
-  useContext,
-  memo,
-  useEffect,
-} from 'react';
+import React, { useRef, useCallback, useState, memo } from 'react';
 import { useNavigate } from 'react-router';
-import { LoginContext } from '../../context/LoginContext';
+import { useLoginActions } from '../../context/LoginContext';
 
 // style
 import { Input, Form } from './style';
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { setData } = useContext(LoginContext);
+  const { setData } = useLoginActions();
   const loginFormRef = useRef(null);
   const [emailCheck, setEmailCheck] = useState(false);
   const [passwordCheck, setPasswordCheck] = useState(false);

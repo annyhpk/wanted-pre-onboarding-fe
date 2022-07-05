@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, memo } from 'react';
+import React, { useCallback, memo } from 'react';
 
 import {
   GlobalNavigationBar,
@@ -8,11 +8,12 @@ import {
   LoginButton,
   LoginDiv,
 } from './style';
-import { LoginContext } from '../../context/LoginContext';
+import { useLoginActions, useLoginValue } from '../../context/LoginContext';
 import { useNavigate } from 'react-router';
 
 const GlobalNavigation = () => {
-  const { loginData, setData } = useContext(LoginContext);
+  const { setData } = useLoginActions();
+  const loginData = useLoginValue();
   const navigate = useNavigate();
 
   const onClickLogout = useCallback(() => {
