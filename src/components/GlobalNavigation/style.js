@@ -5,9 +5,11 @@ export const GlobalNavigationBar = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
-  height: 5vh;
+  height: 5.5vh;
   background: #50bcdf;
-  position: fixed;
+  top: 0;
+  z-index: 1000;
+  position: sticky;
 
   p {
     margin: auto 0;
