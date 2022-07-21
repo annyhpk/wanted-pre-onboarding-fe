@@ -11,6 +11,10 @@ export const GlobalNavigationBar = styled.div`
   z-index: 1000;
   position: sticky;
 
+  @media (max-width: 640px) {
+    justify-content: space-between;
+  }
+
   p {
     margin: auto 0;
     color: white;
