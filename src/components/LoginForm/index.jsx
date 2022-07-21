@@ -4,20 +4,23 @@ import { useLoginActions } from '../../context/LoginContext';
 
 // style
 import { Input, Form } from './style';
+import useValidation from '../../hooks/useValidation';
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const { setData } = useLoginActions();
   const loginFormRef = useRef(null);
-  const [emailCheck, setEmailCheck] = useState(false);
-  const [passwordCheck, setPasswordCheck] = useState(false);
+
+  // validation
+  const [emailCheck, onChangeEmailValidation] = useValidation('email');
+  const [passwordCheck, onChangePasswordValidation] = useValidation('password');
 
   const onSubmitLoginForm = useCallback((e) => {
     e.preventDefault();
     try {
-      const userId = e.target.children.email.value;
+      const formData = new FormData(loginFormRef.current);
       const loginData = {
-        id: userId,
+        id: formData.get('email'),
         success: true,
       };
       setData(loginData);
@@ -25,32 +28,6 @@ const LoginForm = () => {
     } catch (err) {
       console.log(err);
       alert('죄송합니다. 에러가 발생하였습니다.');
-    }
-  }, []);
-
-  const onChangeEmailValidation = useCallback((e) => {
-    const reg = new RegExp(
-      '^[da-zA-Z]([-_.]?[da-zA-Z])*@[da-zA-Z]([-_.]?[da-zA-Z])*.[a-zA-Z]{2,3}$'
-    );
-    if (e.currentTarget.value.match(reg)) {
-      e.currentTarget.classList.remove('fail');
-      setEmailCheck(true);
-    } else {
-      e.currentTarget.classList.add('fail');
-      setEmailCheck(false);
-    }
-  }, []);
-
-  const onChangePasswordValidation = useCallback((e) => {
-    const reg = new RegExp(
-      '^(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*#?&])[A-Za-z0-9$@$!%*#?&]{8,}$'
-    );
-    if (e.currentTarget.value.match(reg)) {
-      e.currentTarget.classList.remove('fail');
-      setPasswordCheck(true);
-    } else {
-      e.currentTarget.classList.add('fail');
-      setPasswordCheck(false);
     }
   }, []);
 
